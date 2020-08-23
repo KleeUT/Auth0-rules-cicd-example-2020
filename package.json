@@ -1,0 +1,22 @@
+{
+  "name": "auth0DeployTest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "a0deploy import -c ./config.json -i ./src/tenant.yaml",
+    "lint": "eslint src",
+    "test": "jest src"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "auth0-deploy-cli": "^5.1.5",
+    "eslint-plugin-jest": "^23.20.0",
+    "jest": "^26.4.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.7.0"
+  }
+}

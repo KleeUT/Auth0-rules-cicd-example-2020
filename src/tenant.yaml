@@ -1,0 +1,9 @@
+rules:
+  - name: sampleRule
+    script: ./rules/sampleRule.js
+    stage: login_success
+    enabled: true
+    order: 1
+rulesConfigs:
+  - key: "Shhh_Secret"
+    value: "don't tell any one"

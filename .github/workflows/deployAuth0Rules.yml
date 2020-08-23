@@ -1,0 +1,32 @@
+name: Test and Deploy to Auth0
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: "12"
+      - name: NPM Install
+        run: npm install
+      - name: Run Jest
+        run: npm test
+      - name: Run Lint
+        run: npm run lint
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    needs:
+      - build
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: "12"
+      - name: Push to Auth0
+        env:
+          AUTH0_DOMAIN: ${{secret.AUTH0_DOMAIN}}
+          AUTH0_CLIENT_SECRET: ${{secret.AUTH0_CLIENT_SECRET}}
+          AUTH0_CLIENT_ID: ${{secret.AUTH0_CLIENT_ID}}
+        run: npx a0deploy import -c ./config.json -i ./src/tenant.yaml
