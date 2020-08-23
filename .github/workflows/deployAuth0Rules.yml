@@ -29,4 +29,4 @@ jobs:
           AUTH0_DOMAIN: ${{secrets.AUTH0_DOMAIN}}
           AUTH0_CLIENT_SECRET: ${{secrets.AUTH0_CLIENT_SECRET}}
           AUTH0_CLIENT_ID: ${{secrets.AUTH0_CLIENT_ID}}
-        run: npx a0deploy import -c ./config.json -i ./src/tenant.yaml
+        run: npm run deploy
